@@ -15,13 +15,13 @@
 	<description>Java text analysis project using AI libraries.</description>
 	<properties>
 		<java.version>17</java.version>
-		<kotlin.version>1.7</kotlin.version>
+		<kotlin.version>1.8.22</kotlin.version>
 	</properties>
 	<dependencies>
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
@@ -63,6 +63,17 @@
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>edu.stanford.nlp</groupId>
+			<artifactId>stanford-corenlp</artifactId>
+			<version>4.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>edu.stanford.nlp</groupId>
+			<artifactId>stanford-corenlp</artifactId>
+			<version>4.4.0</version>
+			<classifier>models</classifier>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -88,7 +99,7 @@
 					<dependency>
 						<groupId>org.jetbrains.kotlin</groupId>
 						<artifactId>kotlin-maven-allopen</artifactId>
-						<version>${kotlin.version}</version>
+						<version>1.8.22</version>
 					</dependency>
 				</dependencies>
 			</plugin>
