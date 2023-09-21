@@ -15,9 +15,7 @@ import java.util.stream.Collectors
 
 @Service
 class AnalysisService {
-    fun analyze(request: String): Flux<List<SentimentAnalysis>> {
-        return Flux.just(analyzeAndReturn(request));
-    }
+    fun analyze(request: String) = Flux.just(analyzeAndReturn(request));
 
     private fun convert(sentence: CoreMap): SentimentAnalysis {
         val tree = sentence.get(SentimentAnnotatedTree::class.java)
