@@ -3,12 +3,13 @@ package me.ferrandis.textAnalyzer.service
 import opennlp.tools.langdetect.*
 import opennlp.tools.util.*
 import org.springframework.stereotype.Service
+import reactor.core.publisher.Flux
 import java.io.File
 
 @Service
 class LanguageService {
 
-    fun getLanguage(text: String): List<Language> {
+    fun getLanguage(text: String): Flux<List<Language>> {
         val dataIn: InputStreamFactory = MarkableFileInputStreamFactory(
                 File("src/main/resources/models/languages.txt"))
         val lineStream: ObjectStream<String> = PlainTextByLineStream(dataIn, "UTF-8")
@@ -23,7 +24,7 @@ class LanguageService {
                 .train(sampleStream, params, LanguageDetectorFactory())
 
         val ld: LanguageDetector = LanguageDetectorME(model)
-        return ld
-                .predictLanguages(text).toList()
+        return Flux.just(ld
+                .predictLanguages(text).toList());
     }
 }
