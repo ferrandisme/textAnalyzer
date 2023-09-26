@@ -5,15 +5,26 @@ This small project aims to provide an endpoint for sentiment analysis. This endp
 
 ## API Reference
 
-#### Send a message
+#### Get sentiments of a text
 
 ```http
   POST /v1/analysis
 ```
 
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
+| Parameter | Type     | Description                      |
+| :-------- | :------- | :------------------------------- |
 | `data`    | `string` | **Required**. Message to analyze |
+
+
+#### Get langauge of a text
+
+```http
+  POST /v1/language
+```
+
+| Parameter | Type     | Description                   |
+| :-------- | :------- | :---------------------------- |
+| `request` | `string` | **Required**. Text to analyze |
 
 
 
@@ -29,12 +40,14 @@ curl --location 'localhost:8080/v1/analysis' \
 --header 'Content-Type: text/plain' \
 --data 'I bought this product, and it'\''s been nothing but trouble from day one. It'\''s flimsy, breaks easily, and doesn'\''t work as advertised. Save your money and avoid this disappointment.'
 ```
-
+```cURL 
+curl --location 'localhost:8080/v1/language' \
+--header 'Content-Type: text/plain' \
+--request 'Hola soy Adrian, encantado de conocerte.'
+```
 
 
 ## Roadmap
 
 - Add data storage in MongoDB Using webflux
-
-- Add other kinds of anylisis (Using other features of the AI)
 
