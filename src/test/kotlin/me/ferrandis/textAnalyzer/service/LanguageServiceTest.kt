@@ -15,11 +15,11 @@ class LanguageServiceTest {
 
     @Test
     fun getLanguage() {
-        assertEquals("spa", service.getLanguage("El sol brilla en el cielo azul").get(0).lang);
-        assertEquals("pob", service.getLanguage("O pôr do sol na praia é sempre uma vista deslumbrante").get(0).lang);
-        assertEquals("fra", service.getLanguage("La vie est belle").get(0).lang);
-        assertEquals("ita", service.getLanguage("La dolce vita").get(0).lang);
-        assertEquals("eng", service.getLanguage("Artificial Intelligence is very cool").get(0).lang);
+        assertEquals("spa", service.getLanguage("El sol brilla en el cielo azul").blockFirst()?.get(0)?.lang);
+        assertEquals("pob", service.getLanguage("O pôr do sol na praia é sempre uma vista deslumbrante").blockFirst()?.get(0)?.lang);
+        assertEquals("fra", service.getLanguage("La vie est belle").blockFirst()?.get(0)?.lang);
+        assertEquals("ita", service.getLanguage("La dolce vita").blockFirst()?.get(0)?.lang);
+        assertEquals("eng", service.getLanguage("Artificial Intelligence is very cool").blockFirst()?.get(0)?.lang);
     }
 
 }
