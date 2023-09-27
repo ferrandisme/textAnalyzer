@@ -1,7 +1,10 @@
 # Text analyzer
 
-This small project aims to provide an endpoint for sentiment analysis. This endpoint will receive a text, which will be split into sentences. The response will be each sentence with its sentiment (neutral, negative, positive, or others). The project uses Stanford Corenlp for data processing. Also, this project is an example to practice Kotlin with Spring.
+This small project aims to provide endpoints for sentiment and language analysis. 
 
+Sentiment analysis will receive a text, which will be split into sentences. The response will be each sentence with its sentiment (neutral, negative, positive, or others). The project uses Stanford Corenlp for data processing. 
+
+Language detection will use a trained model to get information about the language. It will return the three better matches for each text.
 
 ## API Reference
 
@@ -46,8 +49,4 @@ curl --location 'localhost:8080/v1/language' \
 --request 'Hola soy Adrian, encantado de conocerte.'
 ```
 
-
-## Roadmap
-
-- Add data storage in MongoDB Using webflux
 
