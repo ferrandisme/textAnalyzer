@@ -1,30 +1,17 @@
 package me.ferrandis.textAnalyzer.service
 
-import opennlp.tools.langdetect.*
-import opennlp.tools.util.*
+import me.ferrandis.textAnalyzer.model.LanguageData
+import me.ferrandis.textAnalyzer.repository.LanguageRepository
+import opennlp.tools.langdetect.LanguageDetectorME
 import org.springframework.stereotype.Service
-import reactor.core.publisher.Flux
-import java.io.File
+import reactor.core.publisher.Mono
 
 @Service
-class LanguageService {
+class LanguageService(var repository: LanguageRepository, var languageDetector: LanguageDetectorME) {
 
-    fun getLanguage(text: String): Flux<List<Language>> {
-        val dataIn: InputStreamFactory = MarkableFileInputStreamFactory(
-                File("src/main/resources/models/languages.txt"))
-        val lineStream: ObjectStream<String> = PlainTextByLineStream(dataIn, "UTF-8")
-        val sampleStream = LanguageDetectorSampleStream(lineStream)
-        val params = TrainingParameters()
-        params.put(TrainingParameters.ITERATIONS_PARAM, 200)
-        params.put(TrainingParameters.CUTOFF_PARAM, 10)
-        params.put("DataIndexer", "TwoPass")
-        params.put(TrainingParameters.ALGORITHM_PARAM, "NAIVEBAYES")
-
-        val model = LanguageDetectorME
-                .train(sampleStream, params, LanguageDetectorFactory())
-
-        val ld: LanguageDetector = LanguageDetectorME(model)
-        return Flux.just(ld
-                .predictLanguages(text).toList());
+    fun getLanguage(text: String): Mono<LanguageData> {
+        val languages = languageDetector
+                .predictLanguages(text).toList()
+        return repository.save(LanguageData(languages.take(3), text))
     }
 }

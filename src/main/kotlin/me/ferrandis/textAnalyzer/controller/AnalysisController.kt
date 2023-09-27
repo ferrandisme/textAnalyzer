@@ -12,7 +12,7 @@ import reactor.core.publisher.Flux
 class AnalysisController(var service: AnalysisService) {
 
     @PostMapping("v1/analysis")
-    fun dataAnalysis(@RequestBody request: String): Flux<List<SentimentAnalysis>> {
+    fun dataAnalysis(@RequestBody request: String): Flux<SentimentAnalysis> {
         return service.analyze(request);
     }
 }
