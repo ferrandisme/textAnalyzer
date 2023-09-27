@@ -29,7 +29,7 @@ class AnalysisServiceTest {
     fun analyze() {
         //GIVEN
         `when`(repository.saveAll(anyList())).thenAnswer { invocation ->
-            val argument = invocation.getArgument<ArrayList<SentimentAnalysis>>(0) // Asegúrate de reemplazar YourItemType con el tipo de elementos que esperas en la lista
+            val argument = invocation.getArgument<ArrayList<SentimentAnalysis>>(0)
             Flux.fromIterable(argument)
         }
         //THEN
