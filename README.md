@@ -6,6 +6,8 @@ Sentiment analysis will receive a text, which will be split into sentences. The 
 
 Language detection will use a trained model to get information about the language. It will return the three better matches for each text.
 
+**Coverage in lines (1.2.0) 90%**
+
 ## API Reference
 
 #### Get sentiments of a text
